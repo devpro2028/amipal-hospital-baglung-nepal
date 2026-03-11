@@ -6,6 +6,10 @@ const localization = {
       label: 'English (English)',
     },
     {
+      code: 'ne',
+      label: 'Nepali (नेपाली)',
+    },
+    {
       code: 'es',
       label: 'Spanish (Español)',
     },

@@ -112,19 +112,21 @@ export interface Config {
     | ('false' | 'none' | 'null')
     | false
     | null
-    | ('en' | 'es' | 'de' | 'ja' | 'ar')
-    | ('en' | 'es' | 'de' | 'ja' | 'ar')[];
+    | ('en' | 'ne' | 'es' | 'de' | 'ja' | 'ar')
+    | ('en' | 'ne' | 'es' | 'de' | 'ja' | 'ar')[];
   globals: {
     'top-bar': TopBar;
+    header: Header;
     navigation: Navigation;
     footer: Footer;
   };
   globalsSelect: {
     'top-bar': TopBarSelect<false> | TopBarSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
-  locale: 'en' | 'es' | 'de' | 'ja' | 'ar';
+  locale: 'en' | 'ne' | 'es' | 'de' | 'ja' | 'ar';
   user: User;
   jobs: {
     tasks: {
@@ -308,7 +310,7 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'heroCarousel';
     richText?: {
       root: {
         type: string;
@@ -350,7 +352,7 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | GalleryBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -775,6 +777,25 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock".
+ */
+export interface GalleryBlock {
+  heading?: string | null;
+  caption?: string | null;
+  columns?: ('2' | '3' | '4') | null;
+  images?:
+    | {
+        image: string | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1203,6 +1224,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        gallery?: T | GalleryBlockSelect<T>;
       };
   meta?:
     | T
@@ -1299,6 +1321,24 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock_select".
+ */
+export interface GalleryBlockSelect<T extends boolean = true> {
+  heading?: T;
+  caption?: T;
+  columns?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1640,6 +1680,21 @@ export interface TopBar {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  governmentName?: string | null;
+  ministryName?: string | null;
+  hospitalName: string;
+  location?: string | null;
+  emblem?: (string | null) | Media;
+  flag?: (string | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation".
  */
 export interface Navigation {
@@ -1721,6 +1776,21 @@ export interface TopBarSelect<T extends boolean = true> {
       };
   contactEmail?: T;
   contactPhone?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  governmentName?: T;
+  ministryName?: T;
+  hospitalName?: T;
+  location?: T;
+  emblem?: T;
+  flag?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
