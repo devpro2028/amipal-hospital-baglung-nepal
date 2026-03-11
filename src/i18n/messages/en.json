@@ -23,5 +23,14 @@
   "login": "Login",
   "login-with-google": "Login with Google",
   "no-account": "Don't have an account?",
-  "sign-up": "Sign up"
+  "sign-up": "Sign up",
+  "topbar": {
+    "sitemap": "Sitemap",
+    "low-bandwidth": "Low Bandwidth",
+    "screen-reader": "Screen Reader",
+    "administration": "Administration",
+    "emergency": "Emergency",
+    "dark": "Dark",
+    "light": "Light"
+  }
 }
