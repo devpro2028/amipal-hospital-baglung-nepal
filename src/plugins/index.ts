@@ -1,5 +1,12 @@
 import { Plugin } from 'payload'
 import { payloadSidebar } from 'payload-sidebar-plugin'
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
+import { searchPlugin } from '@payloadcms/plugin-search'
+import { seoPlugin } from '@payloadcms/plugin-seo'
+import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { beforeSyncWithSearch } from '../search/beforeSync'
+import { searchFields } from '../search/fieldOverrides'
+import { getServerSideURL } from '../utilities/getURL'
 
 export const plugins: Plugin[] = [
   payloadSidebar({
@@ -79,5 +86,20 @@ export const plugins: Plugin[] = [
       '--badge-yellow-bg': '#eab308',
       '--badge-gray-bg': '#6b7280',
     },
+  }),
+  formBuilderPlugin({}),
+  searchPlugin({
+    collections: ['posts', 'pages'],
+    beforeSync: beforeSyncWithSearch,
+    searchOverrides: {
+      fields: ({ defaultFields }) => [...defaultFields, ...searchFields],
+    },
+  }),
+  seoPlugin({
+    generateURL: ({ doc }) =>
+      `${getServerSideURL()}/${typeof doc?.slug === 'string' ? doc.slug : ''}`,
+  }),
+  redirectsPlugin({
+    collections: ['pages', 'posts'],
   }),
 ]

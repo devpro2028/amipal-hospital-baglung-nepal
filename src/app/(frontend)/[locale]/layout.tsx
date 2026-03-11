@@ -11,6 +11,11 @@ import { NextIntlClientProvider } from 'next-intl'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import localization from '@/i18n/localization'
+import { getCachedGlobal } from '@/utilities/getGlobals'
+import { TopBar } from '@/components/TopBar'
+import { Navbar } from '@/components/Navbar'
+import { SiteFooter } from '@/components/SiteFooter'
+import type { Navigation, TopBar as TopBarType, Footer } from '@/payload-types'
 
 import '../globals.css'
 
@@ -33,6 +38,12 @@ export default async function RootLayout({ children, params }: Args) {
 
   const messages = await getMessages()
 
+  const [topBarData, navData, footerData] = await Promise.all([
+    getCachedGlobal('top-bar', 1)() as Promise<TopBarType>,
+    getCachedGlobal('navigation', 1)() as Promise<Navigation>,
+    getCachedGlobal('footer', 1)() as Promise<Footer>,
+  ])
+
   return (
     <html
       className={cn(GeistSans.variable, GeistMono.variable)}
@@ -47,7 +58,12 @@ export default async function RootLayout({ children, params }: Args) {
       <body>
         <Toaster />
         <Providers>
-          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider messages={messages}>
+            <TopBar data={topBarData} />
+            <Navbar data={navData} />
+            {children}
+            <SiteFooter data={footerData} />
+          </NextIntlClientProvider>
         </Providers>
       </body>
     </html>
