@@ -1,99 +1,204 @@
 import React from 'react'
 import type { Footer as FooterType } from '@/payload-types'
-import { Separator } from '@/components/ui/separator'
+import { Link } from '@/i18n/routing'
+import {
+  Phone,
+  PhoneCall,
+  Mail,
+  MapPin,
+  Clock,
+  Facebook,
+  Twitter,
+  Youtube,
+  Instagram,
+  Linkedin,
+  ChevronRight,
+  ExternalLink,
+} from 'lucide-react'
 
-interface FooterProps {
+interface SiteFooterProps {
   data: FooterType
 }
 
-const socialIcons: Record<string, React.FC<{ className?: string }>> = {
-  twitter: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  ),
-  github: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-    </svg>
-  ),
-  linkedin: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  ),
-  facebook: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-    </svg>
-  ),
-  instagram: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-    </svg>
-  ),
-  youtube: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-    </svg>
-  ),
+/* ── Social Icon Map ───────────────────────────────────────────────── */
+const SocialIcon = ({
+  platform,
+  className,
+}: {
+  platform: string
+  className?: string
+}) => {
+  switch (platform) {
+    case 'facebook':
+      return <Facebook className={className} />
+    case 'twitter':
+      return <Twitter className={className} />
+    case 'youtube':
+      return <Youtube className={className} />
+    case 'instagram':
+      return <Instagram className={className} />
+    case 'linkedin':
+      return <Linkedin className={className} />
+    default:
+      return null
+  }
 }
 
-export function SiteFooter({ data }: FooterProps) {
+/* ── Component ─────────────────────────────────────────────────────── */
+export function SiteFooter({ data }: SiteFooterProps) {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-muted/40 border-t">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <h3 className="font-bold text-lg mb-3">Acme Inc</h3>
+    <footer className="w-full bg-[#0d2b6e] text-white">
+
+      {/* ─── Main Footer Grid ──────────────────────────────────────── */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          {/* ── Col 1: Hospital Info ───────────────────────────────── */}
+          <div className="lg:col-span-1 space-y-5">
+            {/* Hospital title */}
+            <div>
+              <h3 className="text-lg font-extrabold text-white leading-snug">
+                Dhaulagiri Provincial Hospital
+              </h3>
+              <div className="mt-1 h-1 w-12 bg-red-500 rounded-full" />
+            </div>
+
+            {/* Description */}
             {data.description && (
-              <p className="text-sm text-muted-foreground">{data.description}</p>
+              <p className="text-sm text-white/70 leading-relaxed">{data.description}</p>
             )}
+
+            {/* Social links */}
             {data.socialLinks && data.socialLinks.length > 0 && (
-              <div className="flex gap-3 mt-4">
-                {data.socialLinks.map((social) => {
-                  const Icon = socialIcons[social.platform]
-                  return (
-                    <a
-                      key={social.id}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {Icon && <Icon className="h-5 w-5" />}
-                    </a>
-                  )
-                })}
+              <div className="flex flex-wrap gap-2 pt-1">
+                {data.socialLinks.map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={social.platform}
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-600 transition-colors duration-200"
+                  >
+                    <SocialIcon platform={social.platform} className="w-4 h-4" />
+                  </a>
+                ))}
               </div>
             )}
           </div>
 
-          {/* Dynamic columns */}
+          {/* ── Col 2: Contact Info ────────────────────────────────── */}
+          <div className="space-y-5">
+            <div>
+              <h4 className="text-base font-bold text-white uppercase tracking-wide">
+                Contact Us
+              </h4>
+              <div className="mt-1 h-1 w-12 bg-red-500 rounded-full" />
+            </div>
+
+            <ul className="space-y-3.5 text-sm text-white/75">
+              {data.address && (
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-red-400" />
+                  <span className="leading-relaxed">{data.address}</span>
+                </li>
+              )}
+              {data.phone && (
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 shrink-0 text-red-400" />
+                  <a href={`tel:${data.phone}`} className="hover:text-white transition-colors">
+                    {data.phone}
+                  </a>
+                </li>
+              )}
+              {data.emergencyPhone && (
+                <li className="flex items-center gap-3">
+                  <PhoneCall className="w-4 h-4 shrink-0 text-red-400" />
+                  <a href={`tel:${data.emergencyPhone}`} className="hover:text-white transition-colors font-semibold text-red-300">
+                    {data.emergencyPhone} <span className="text-xs font-normal text-white/60">(Emergency)</span>
+                  </a>
+                </li>
+              )}
+              {data.email && (
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 shrink-0 text-red-400" />
+                  <a href={`mailto:${data.email}`} className="hover:text-white transition-colors break-all">
+                    {data.email}
+                  </a>
+                </li>
+              )}
+              {data.openingHours && (
+                <li className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 mt-0.5 shrink-0 text-red-400" />
+                  <span className="leading-relaxed">{data.openingHours}</span>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          {/* ── Col 3 & 4: Dynamic Link Columns ───────────────────── */}
           {data.columns?.map((column) => (
-            <div key={column.id}>
-              <h4 className="font-semibold text-sm mb-3">{column.title}</h4>
-              <ul className="space-y-2">
+            <div key={column.id} className="space-y-5">
+              <div>
+                <h4 className="text-base font-bold text-white uppercase tracking-wide">
+                  {column.title}
+                </h4>
+                <div className="mt-1 h-1 w-12 bg-red-500 rounded-full" />
+              </div>
+              <ul className="space-y-2.5">
                 {column.links?.map((link) => (
                   <li key={link.id}>
-                    <a
-                      href={link.url}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    <Link
+                      href={link.url as any}
+                      className="flex items-center gap-2 text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200 group"
                     >
+                      <ChevronRight className="w-3 h-3 text-red-400 shrink-0 group-hover:text-red-300" />
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+
         </div>
-
-        <Separator className="my-8" />
-
-        <div className="text-center text-sm text-muted-foreground">{data.copyright}</div>
       </div>
+
+      {/* ─── Divider ──────────────────────────────────────────────── */}
+      <div className="border-t border-white/10" />
+
+      {/* ─── Bottom Bar ───────────────────────────────────────────── */}
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/55">
+
+          {/* Copyright */}
+          <p>
+            {data.copyright ||
+              `© ${currentYear} Dhaulagiri Provincial Hospital, Baglung. All rights reserved.`}
+          </p>
+
+          {/* Developer Credit */}
+          {data.developerCredit && (
+            <p className="flex items-center gap-1">
+              {data.developerCredit}
+              {data.developerUrl && (
+                <a
+                  href={data.developerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-0.5 text-white/40 hover:text-white/70 transition-colors ml-1"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
+            </p>
+          )}
+
+        </div>
+      </div>
+
     </footer>
   )
 }
