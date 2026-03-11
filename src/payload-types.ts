@@ -1665,16 +1665,15 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface TopBar {
   id: string;
-  announcement?: string | null;
-  links?:
-    | {
-        label: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
-  contactEmail?: string | null;
-  contactPhone?: string | null;
+  sitemapUrl?: string | null;
+  lowBandwidthUrl?: string | null;
+  screenReaderUrl?: string | null;
+  adminPhone?: string | null;
+  emergencyPhone?: string | null;
+  showDate?: boolean | null;
+  showDarkMode?: boolean | null;
+  showFontSize?: boolean | null;
+  showLanguage?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1766,16 +1765,15 @@ export interface Footer {
  * via the `definition` "top-bar_select".
  */
 export interface TopBarSelect<T extends boolean = true> {
-  announcement?: T;
-  links?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        id?: T;
-      };
-  contactEmail?: T;
-  contactPhone?: T;
+  sitemapUrl?: T;
+  lowBandwidthUrl?: T;
+  screenReaderUrl?: T;
+  adminPhone?: T;
+  emergencyPhone?: T;
+  showDate?: T;
+  showDarkMode?: T;
+  showFontSize?: T;
+  showLanguage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

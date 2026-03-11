@@ -23,5 +23,14 @@
   "login": "लग इन",
   "login-with-google": "गुगलसँग लग इन गर्नुहोस्",
   "no-account": "खाता छैन?",
-  "sign-up": "साइन अप गर्नुहोस्"
+  "sign-up": "साइन अप गर्नुहोस्",
+  "topbar": {
+    "sitemap": "साईटम्याप",
+    "low-bandwidth": "लो ब्यान्डविथ",
+    "screen-reader": "स्क्रीन रीडर",
+    "administration": "प्रशासन",
+    "emergency": "आकस्मिक",
+    "dark": "Dark",
+    "light": "Light"
+  }
 }
