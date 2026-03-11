@@ -13,9 +13,15 @@ import { notFound } from 'next/navigation'
 import localization from '@/i18n/localization'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import { TopBar } from '@/components/TopBar'
+import { SiteHeader } from '@/components/SiteHeader'
 import { Navbar } from '@/components/Navbar'
 import { SiteFooter } from '@/components/SiteFooter'
-import type { Navigation, TopBar as TopBarType, Footer } from '@/payload-types'
+import type {
+  Navigation,
+  TopBar as TopBarType,
+  Footer,
+  Header as HeaderType,
+} from '@/payload-types'
 
 import '../globals.css'
 
@@ -38,10 +44,11 @@ export default async function RootLayout({ children, params }: Args) {
 
   const messages = await getMessages()
 
-  const [topBarData, navData, footerData] = await Promise.all([
-    getCachedGlobal('top-bar', 1)() as Promise<TopBarType>,
-    getCachedGlobal('navigation', 1)() as Promise<Navigation>,
-    getCachedGlobal('footer', 1)() as Promise<Footer>,
+  const [topBarData, headerData, navData, footerData] = await Promise.all([
+    getCachedGlobal('top-bar', 1, locale)() as Promise<TopBarType>,
+    getCachedGlobal('header', 1, locale)() as Promise<HeaderType>,
+    getCachedGlobal('navigation', 1, locale)() as Promise<Navigation>,
+    getCachedGlobal('footer', 1, locale)() as Promise<Footer>,
   ])
 
   return (
@@ -60,6 +67,7 @@ export default async function RootLayout({ children, params }: Args) {
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <TopBar data={topBarData} />
+            <SiteHeader data={headerData} />
             <Navbar data={navData} />
             {children}
             <SiteFooter data={footerData} />

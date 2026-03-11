@@ -12,6 +12,7 @@ import { Categories } from './collections/Categories'
 import { plugins } from './plugins'
 import localization from './i18n/localization'
 import { TopBar } from './globals/TopBar/config'
+import { Header } from './globals/Header/config'
 import { Navigation } from './globals/Navigation/config'
 import { Footer } from './globals/Footer/config'
 import { defaultLexical } from './fields/defaultLexical'
@@ -75,7 +76,7 @@ export default buildConfig({
   }),
   collections: [Media, Users, Pages, Posts, Categories],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [TopBar, Navigation, Footer],
+  globals: [TopBar, Header, Navigation, Footer],
   plugins,
   localization,
   secret: process.env.PAYLOAD_SECRET,
