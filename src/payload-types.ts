@@ -115,20 +115,14 @@ export interface Config {
     | ('en' | 'es' | 'de' | 'ja' | 'ar')
     | ('en' | 'es' | 'de' | 'ja' | 'ar')[];
   globals: {
-    'login-page': LoginPage;
     'top-bar': TopBar;
     navigation: Navigation;
     footer: Footer;
-    'landing-page': LandingPage;
-    header: Header;
   };
   globalsSelect: {
-    'login-page': LoginPageSelect<false> | LoginPageSelect<true>;
     'top-bar': TopBarSelect<false> | TopBarSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
-    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
-    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: 'en' | 'es' | 'de' | 'ja' | 'ar';
   user: User;
@@ -1627,26 +1621,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "login-page".
- */
-export interface LoginPage {
-  id: string;
-  title: string;
-  description: string;
-  emailLabel: string;
-  emailPlaceholder: string;
-  passwordLabel: string;
-  passwordPlaceholder: string;
-  forgotPassword: string;
-  loginButton: string;
-  loginWithGoogle: string;
-  noAccount: string;
-  signUp: string;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "top-bar".
  */
 export interface TopBar {
@@ -1734,81 +1708,6 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page".
- */
-export interface LandingPage {
-  id: string;
-  heroTitle: string;
-  heroSubtitle?: string | null;
-  heroCta?: string | null;
-  heroSecondaryCta?: string | null;
-  features?:
-    | {
-        title: string;
-        description?: string | null;
-        icon?: ('globe' | 'shield' | 'zap' | 'users' | 'code' | 'layers') | null;
-        id?: string | null;
-      }[]
-    | null;
-  featuresTitle?: string | null;
-  featuresSubtitle?: string | null;
-  ctaSectionTitle?: string | null;
-  ctaSectionDescription?: string | null;
-  ctaSectionButton?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
- */
-export interface Header {
-  id: string;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "login-page_select".
- */
-export interface LoginPageSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  emailLabel?: T;
-  emailPlaceholder?: T;
-  passwordLabel?: T;
-  passwordPlaceholder?: T;
-  forgotPassword?: T;
-  loginButton?: T;
-  loginWithGoogle?: T;
-  noAccount?: T;
-  signUp?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "top-bar_select".
  */
 export interface TopBarSelect<T extends boolean = true> {
@@ -1888,55 +1787,6 @@ export interface FooterSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page_select".
- */
-export interface LandingPageSelect<T extends boolean = true> {
-  heroTitle?: T;
-  heroSubtitle?: T;
-  heroCta?: T;
-  heroSecondaryCta?: T;
-  features?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
-      };
-  featuresTitle?: T;
-  featuresSubtitle?: T;
-  ctaSectionTitle?: T;
-  ctaSectionDescription?: T;
-  ctaSectionButton?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
- */
-export interface HeaderSelect<T extends boolean = true> {
-  navItems?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
         id?: T;
       };
   updatedAt?: T;

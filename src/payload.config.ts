@@ -11,12 +11,9 @@ import { Posts } from './collections/Posts'
 import { Categories } from './collections/Categories'
 import { plugins } from './plugins'
 import localization from './i18n/localization'
-import { LoginPage } from './globals/LoginPage/config'
 import { TopBar } from './globals/TopBar/config'
 import { Navigation } from './globals/Navigation/config'
 import { Footer } from './globals/Footer/config'
-import { LandingPage } from './globals/LandingPage/config'
-import { Header } from './Header/config'
 import { defaultLexical } from './fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 
@@ -78,7 +75,7 @@ export default buildConfig({
   }),
   collections: [Media, Users, Pages, Posts, Categories],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [LoginPage, TopBar, Navigation, Footer, LandingPage, Header],
+  globals: [TopBar, Navigation, Footer],
   plugins,
   localization,
   secret: process.env.PAYLOAD_SECRET,
