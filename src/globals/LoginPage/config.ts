@@ -1,0 +1,85 @@
+import type { GlobalConfig } from 'payload'
+
+export const LoginPage: GlobalConfig = {
+  slug: 'login-page',
+  label: 'Login Page',
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Login to your account',
+    },
+    {
+      name: 'description',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Enter your email below to login to your account',
+    },
+    {
+      name: 'emailLabel',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Email',
+    },
+    {
+      name: 'emailPlaceholder',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Enter your email address',
+    },
+    {
+      name: 'passwordLabel',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Password',
+    },
+    {
+      name: 'passwordPlaceholder',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Enter your password',
+    },
+    {
+      name: 'forgotPassword',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Forgot your password?',
+    },
+    {
+      name: 'loginButton',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Login',
+    },
+    {
+      name: 'loginWithGoogle',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Login with Google',
+    },
+    {
+      name: 'noAccount',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: "Don't have an account?",
+    },
+    {
+      name: 'signUp',
+      type: 'text',
+      localized: true,
+      required: true,
+      defaultValue: 'Sign up',
+    },
+  ],
+}

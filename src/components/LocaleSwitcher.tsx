@@ -1,0 +1,53 @@
+'use client'
+
+import { useLocale } from 'next-intl'
+import { useParams } from 'next/navigation'
+import { useTransition } from 'react'
+import { TypedLocale } from 'payload'
+
+import localization from '@/i18n/localization'
+import { usePathname, useRouter } from '@/i18n/routing'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+export function LocaleSwitcher() {
+  const locale = useLocale()
+  const router = useRouter()
+  const [, startTransition] = useTransition()
+  const pathname = usePathname()
+  const params = useParams()
+
+  function onSelectChange(value: TypedLocale) {
+    startTransition(() => {
+      router.replace(
+        // @ts-expect-error -- TypeScript will validate that only known `params`
+        // are used in combination with a given `pathname`. Since the two will
+        // always match for the current route, we can skip runtime checks.
+        { pathname, params },
+        { locale: value },
+      )
+    })
+  }
+
+  return (
+    <Select onValueChange={onSelectChange} value={locale}>
+      <SelectTrigger className="w-auto text-sm bg-transparent gap-2 pl-3 border-none">
+        <SelectValue placeholder="Language" />
+      </SelectTrigger>
+      <SelectContent>
+        {localization.locales
+          .sort((a, b) => a.label.localeCompare(b.label))
+          .map((loc) => (
+            <SelectItem value={loc.code} key={loc.code}>
+              {loc.label}
+            </SelectItem>
+          ))}
+      </SelectContent>
+    </Select>
+  )
+}
