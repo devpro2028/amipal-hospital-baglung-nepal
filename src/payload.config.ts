@@ -9,6 +9,7 @@ import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Categories } from './collections/Categories'
+import { ContactSubmissions } from './collections/ContactSubmissions'
 import { plugins } from './plugins'
 import localization from './i18n/localization'
 import { TopBar } from './globals/TopBar/config'
@@ -74,7 +75,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
-  collections: [Media, Users, Pages, Posts, Categories],
+  collections: [Media, Users, Pages, Posts, Categories, ContactSubmissions],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [TopBar, Header, Navigation, Footer],
   plugins,
