@@ -60,20 +60,6 @@ export const ContactUs: Block = {
         description: 'Google Maps embed URL for the location',
       },
     },
-    {
-      name: 'formHeading',
-      type: 'text',
-      localized: true,
-      label: 'Form Heading',
-      defaultValue: 'Feedback',
-    },
-    {
-      name: 'submitButtonLabel',
-      type: 'text',
-      localized: true,
-      label: 'Submit Button Label',
-      defaultValue: 'Submit',
-    },
   ],
   labels: {
     plural: 'Contact Us Blocks',

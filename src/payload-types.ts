@@ -354,7 +354,16 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | GalleryBlock | ContactUsBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | GalleryBlock
+    | ContactUsBlock
+    | ContactFormBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -827,11 +836,20 @@ export interface ContactUsBlock {
    * Google Maps embed URL for the location
    */
   mapEmbedUrl?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactFormBlock".
+ */
+export interface ContactFormBlock {
   formHeading?: string | null;
   submitButtonLabel?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'contactUs';
+  blockType: 'contactForm';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1280,6 +1298,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
         contactUs?: T | ContactUsBlockSelect<T>;
+        contactForm?: T | ContactFormBlockSelect<T>;
       };
   meta?:
     | T
@@ -1408,6 +1427,14 @@ export interface ContactUsBlockSelect<T extends boolean = true> {
   phone?: T;
   email?: T;
   mapEmbedUrl?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactFormBlock_select".
+ */
+export interface ContactFormBlockSelect<T extends boolean = true> {
   formHeading?: T;
   submitButtonLabel?: T;
   id?: T;
