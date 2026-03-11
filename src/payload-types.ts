@@ -1736,6 +1736,11 @@ export interface Navigation {
 export interface Footer {
   id: string;
   description?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  emergencyPhone?: string | null;
+  email?: string | null;
+  openingHours?: string | null;
   columns?:
     | {
         title: string;
@@ -1749,14 +1754,16 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
-  copyright?: string | null;
   socialLinks?:
     | {
-        platform: 'twitter' | 'github' | 'linkedin' | 'facebook' | 'instagram' | 'youtube';
+        platform: 'facebook' | 'twitter' | 'youtube' | 'instagram' | 'linkedin';
         url: string;
         id?: string | null;
       }[]
     | null;
+  copyright?: string | null;
+  developerCredit?: string | null;
+  developerUrl?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1836,6 +1843,11 @@ export interface NavigationSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   description?: T;
+  address?: T;
+  phone?: T;
+  emergencyPhone?: T;
+  email?: T;
+  openingHours?: T;
   columns?:
     | T
     | {
@@ -1849,7 +1861,6 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  copyright?: T;
   socialLinks?:
     | T
     | {
@@ -1857,6 +1868,9 @@ export interface FooterSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  copyright?: T;
+  developerCredit?: T;
+  developerUrl?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
