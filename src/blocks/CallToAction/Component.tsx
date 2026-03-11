@@ -4,7 +4,6 @@ import type { CallToActionBlock as CTABlockProps } from '@/payload-types'
 
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
-import { Button } from '@/components/ui/button'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = ({ links, richText }) => {
   return (
@@ -18,9 +17,6 @@ export const CallToActionBlock: React.FC<CTABlockProps> = ({ links, richText }) 
             return <CMSLink key={i} size="lg" {...link} />
           })}
         </div>
-        <Button asChild className="hidden md:inline-flex">
-          <a href="#">{'Get Started'}</a>
-        </Button>
       </div>
     </div>
   )

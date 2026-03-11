@@ -352,7 +352,15 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | GalleryBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | GalleryBlock
+    | NewsHighlightsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -799,6 +807,25 @@ export interface GalleryBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsHighlightsBlock".
+ */
+export interface NewsHighlightsBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  populateBy?: ('collection' | 'selection') | null;
+  categories?: (string | Category)[] | null;
+  limit?: number | null;
+  selectedDocs?: (string | Post)[] | null;
+  /**
+   * Optional link for a "View All" button (e.g. /news)
+   */
+  viewAllLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsHighlights';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -1225,6 +1252,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
+        newsHighlights?: T | NewsHighlightsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1339,6 +1367,21 @@ export interface GalleryBlockSelect<T extends boolean = true> {
         caption?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsHighlightsBlock_select".
+ */
+export interface NewsHighlightsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  populateBy?: T;
+  categories?: T;
+  limit?: T;
+  selectedDocs?: T;
+  viewAllLink?: T;
   id?: T;
   blockName?: T;
 }
